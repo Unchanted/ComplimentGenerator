@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-const compliments = [
-  "You're amazing!",
-  "You light up the room!",
-  "Your smile is contagious!",
-  "You're incredibly talented!",
-  "You make a difference!",
-  "You're a true inspiration!",
-  "You're one of a kind!",
-  "You're a ray of sunshine!",
-  "You bring out the best in others!",
-  "Your positivity is refreshing!",
-];
+import { compliments } from './compliments.jsx';
+import { TypewriterEffect } from './components/ui/typewriter-effects.tsx';
 
 const SpinningWheel = () => {
   const [spinning, setSpinning] = useState(false);
@@ -48,9 +37,7 @@ const SpinningWheel = () => {
           }}
         ></div>
         <div className="absolute inset-12 bg-white rounded-full flex items-center justify-center">
-          <p className="text-center text-2xl font-bold p-8 max-w-[80%]">
-            {compliment || 'Spin for a compliment!'}
-          </p>
+          {!spinning && <TypewriterEffect words={[{ text: compliment }]} />}
         </div>
       </div>
       <motion.button
