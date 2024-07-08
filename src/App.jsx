@@ -28,46 +28,23 @@ const SpinningWheel = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
+    <div className="text-center p-8">
       <motion.div
+        className="w-72 h-72 rounded-full bg-conic-gradient m-auto flex justify-center items-center"
         style={{
-          width: '300px',
-          height: '300px',
-          borderRadius: '50%',
-          background: 'conic-gradient(from 0deg, red, yellow, green, blue, purple)',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          backgroundImage: 'conic-gradient(from 0deg, red, yellow, green, blue, purple)',
         }}
         animate={{ rotate: spinning ? 360 : 0 }}
         transition={{ duration: 2, ease: 'easeInOut' }}
       >
         <div
-          style={{
-            width: '80%',
-            height: '80%',
-            borderRadius: '50%',
-            background: 'white',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            padding: '20px',
-          }}
+          className="w-4/5 h-4/5 rounded-full bg-white flex justify-center items-center text-lg font-bold text-center p-8"
         >
           {compliment || 'Spin for a compliment!'}
         </div>
       </motion.div>
       <motion.button
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          fontSize: '16px',
-          cursor: 'pointer',
-        }}
+        className="mt-4 px-4 py-2 text-lg cursor-pointer"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={spinWheel}
