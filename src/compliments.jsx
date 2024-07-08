@@ -1,3 +1,5 @@
+import React from 'react';
+
 const compliments = [
   "You're amazing!",
   "You light up the room!",
@@ -31,4 +33,12 @@ const compliments = [
   "Your compassion knows no bounds!"
 ];
 
-export { compliments };
+const Compliments = ({ compliment }) => {
+  return (
+    <p className="text-center text-2xl font-bold p-8 max-w-[80%]">
+      {compliment || 'Spin for a compliment!'}
+    </p>
+  );
+};
+
+export { compliments, Compliments };
