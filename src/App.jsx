@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { compliments } from './compliments.jsx';
-import { TypewriterEffect } from './components/ui/typewriter-effects.tsx';
+import { compliments } from './compliments';
+import { TypewriterEffect } from './components/ui/typewriter-effects';
 
 const SpinningWheel = () => {
   const [spinning, setSpinning] = useState(false);
@@ -18,6 +18,7 @@ const SpinningWheel = () => {
       const randomIndex = Math.floor(Math.random() * compliments.length);
       setCompliment(compliments[randomIndex]);
       setSpinning(false);
+      setRotation(newRotation % 360); // Ensure rotation stays within 0-360 degrees
     }, 3000);
   };
 
