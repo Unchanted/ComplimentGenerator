@@ -1,15 +1,21 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { compliments } from '../../compliments'; // Adjust the path as needed
 
-export const TypewriterEffect = ({ words, className, cursorClassName }) => {
-  if (!words || words.length === 0) {
-    return null; // Return null if words are not provided
-  }
+export const TypewriterEffect = ({ className, cursorClassName }) => {
+  const [selectedCompliment, setSelectedCompliment] = useState('');
 
-  const wordsArray = words.map((word) => ({
-    ...word,
-    text: word.text.split(' '),
-  }));
+  useEffect(() => {
+    try {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      setSelectedCompliment(compliments[randomIndex]);
+    } catch (error) {
+      console.error('Error selecting compliment:', error);
+      setSelectedCompliment('You are awesome!');
+    }
+  }, []);
+
+  const wordsArray = selectedCompliment.split(' ');
 
   const controls = useAnimation();
   const { ref, inView } = useInView();
@@ -31,20 +37,15 @@ export const TypewriterEffect = ({ words, className, cursorClassName }) => {
       className={`text-white font-bold text-center ${className}`}
       style={{ display: 'inline-block' }}
     >
-      {wordsArray.map((word, idx) => (
-        <motion.span key={`word-${idx}`} variants={{}}>
-          {word.text.map((char, index) => (
-            <motion.span
-              key={`char-${index}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className={`inline-block ${word.className}`}
-            >
-              {char}&nbsp;
-            </motion.span>
-          ))}
-          &nbsp;
+      {wordsArray.map((char, index) => (
+        <motion.span
+          key={`char-${index}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
+          className={`inline-block ${className}`}
+        >
+          {char}&nbsp;
         </motion.span>
       ))}
       <motion.span
