@@ -1,9 +1,12 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { compliments } from '../../compliments'; // Adjust the path as needed
+import { useEffect, useState, useRef } from 'react';
+import { compliments } from '../../compliments';
 
 export const TypewriterEffect = ({ className, cursorClassName }) => {
   const [selectedCompliment, setSelectedCompliment] = useState('');
+  const ref = useRef(null); 
+  const controls = useAnimation();
+  const inView = useInView(ref); 
 
   useEffect(() => {
     try {
@@ -16,9 +19,6 @@ export const TypewriterEffect = ({ className, cursorClassName }) => {
   }, []);
 
   const wordsArray = selectedCompliment.split(' ');
-
-  const controls = useAnimation();
-  const { ref, inView } = useInView();
 
   useEffect(() => {
     if (inView) {
@@ -33,7 +33,7 @@ export const TypewriterEffect = ({ className, cursorClassName }) => {
 
   return (
     <div
-      ref={ref}
+      ref={ref} // Attach ref here
       className={`text-white font-bold text-center ${className}`}
       style={{ display: 'inline-block' }}
     >

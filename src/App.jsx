@@ -15,7 +15,7 @@ const SpinningWheel = () => {
 
     setTimeout(() => {
       setSpinning(false);
-      setRotation(newRotation % 360); // Ensure rotation stays within 0-360 degrees
+      setRotation(newRotation % 360);
     }, 3000);
   };
 
@@ -38,9 +38,7 @@ const SpinningWheel = () => {
           }}
         ></div>
         <div className="absolute inset-12 bg-neutral-800 rounded-full flex items-center justify-center">
-          {!spinning && (
-            <TypewriterEffect />
-          )}
+          {!spinning && <TypewriterEffect />}
           {spinning && (
             <p className="text-center text-2xl font-bold text-white">Spinning...</p>
           )}
